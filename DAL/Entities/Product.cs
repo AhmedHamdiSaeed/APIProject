@@ -12,6 +12,7 @@ namespace DAL.Entities
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        public string ImageUrl { get; set; }=null!;
         public int Sold { get; set; }
         public string Brand { get; set;}=null!;
         public int RattingAve { get; set; }
@@ -22,5 +23,6 @@ namespace DAL.Entities
         public int CategoryID {  get; set; }
         public Category Category { get; set; } = null!;
         public ICollection<Cart> Carts { get; set; } = [];
+        //public ICollection<Image>ImagesUrl { get; set; } = [];
     }
 }

@@ -13,9 +13,26 @@ namespace DAL.Repositories.Products
     public class ProductRepo:GenericRepo<Product>,IProductRepo
     {
         public ProductRepo(EcommerceContext ecommerceContext):base(ecommerceContext) { }
-        public IEnumerable<Product> GetProductsWithCategory()
+        public IEnumerable<Product> GetProducts(string? Name ,string? Category)
         {
-            return _context.Products.Include(p=>p.Category);
+            
+            IQueryable<Product> products=_context.Products.Include(p=>p.Category);
+            if (Category != null)
+            {
+                products.Where(p =>string.Equals(Category,p.Category.Name));
+            }
+            if (Name!=null)
+            {
+                products=products.Where(p=>p.Name==Name);
+            }
+           
+            return products;
         }
+        public Product? getProductDetailsById(int id) 
+        {
+            return _context.Products.Include(p=>p.Category).FirstOrDefault(p=>p.Id==id);
+        }
+
+
     }
 }

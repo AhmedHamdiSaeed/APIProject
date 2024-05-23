@@ -9,11 +9,9 @@ namespace DAL.Entities
 {
     public class Cart
     {
-        public int Id {get; set;}
-        public int Quantity { get; set;}
-        public int TotalPrice { get; set;}
-        public int UserId { get; set;}
+        public int Id { get; set; }
+        public string UserId { get; set; } = null!;
         public CustomUser User { get; set; } = null!;
-        public ICollection<Product>Products { get; set; }=null!;
+        public ICollection<CartProduct>CartProducts { get; set; }=null!;
     }
 }

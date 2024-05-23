@@ -6,6 +6,8 @@ using DAL.Repositories.UserRepo;
 using DAL.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -58,7 +60,14 @@ namespace ApiProject
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("p1", builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyOrigin().AllowCredentials().AllowAnyMethod();
+                }
+                    );
+            });
 
             var app = builder.Build();
 
@@ -68,6 +77,14 @@ namespace ApiProject
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseStaticFiles(
+                       new StaticFileOptions
+                       {
+                           FileProvider = new PhysicalFileProvider(Path.Combine(Environment.CurrentDirectory, "Images")),
+                           RequestPath = "/Images"
+                       }
+                );
+
 
             app.UseAuthentication();
             app.UseAuthorization();

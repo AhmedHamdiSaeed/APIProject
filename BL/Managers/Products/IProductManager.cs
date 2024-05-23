@@ -10,8 +10,8 @@ namespace BL.Managers.Products
 {
     public  interface IProductManager
     {
-        IEnumerable<ProductReadDto> GetProductsWithCategory();
+        IEnumerable<ProductReadDto> GetProducts(string? Name, string? Category);
         ProductAddDto addProduct(ProductAddDto productAddDto);
-       
+        ProductReadDto? GetProductDetails(int id);
     }
 }

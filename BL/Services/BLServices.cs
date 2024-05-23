@@ -1,4 +1,6 @@
-﻿using BL.Managers.Products;
+﻿using BL.Managers.Categories;
+using BL.Managers.Products;
+using BL.Managers.ShoppingCarts;
 using BL.Managers.Users;
 using DAL.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +19,8 @@ namespace BL.Services
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<IUserManager,UserManager>();
             services.AddScoped<IProductManager, ProductManager>();
+            services.AddScoped<ICategoryManager,CategoryManager>();
+            services.AddScoped<ICartManager, CartManager>();
         }
     }
 }

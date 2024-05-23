@@ -1,4 +1,6 @@
-﻿using DAL.Repositories.Products;
+﻿using DAL.Repositories.Categories;
+using DAL.Repositories.Products;
+using DAL.Repositories.ShppingCart;
 using DAL.Repositories.UserRepo;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,6 +15,9 @@ namespace DAL.UnitOfWork
     {
         IUserRepo UserRepo { get; }
         IProductRepo ProductRepo { get; }
+        ICategoryRepo CategoryRepo { get; }
+        ICartRepo CartRepo { get; }
+        
         void SaveChanges();
     }
 }

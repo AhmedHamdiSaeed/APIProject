@@ -10,7 +10,7 @@ namespace DAL.Repositories.Products
 {
     public interface IProductRepo:IGenericRepo<Product>
     {
-        IEnumerable<Product> GetProductsWithCategory();
-
+        IEnumerable<Product> GetProducts(string? Name, string? Category);
+        Product? getProductDetailsById(int id);
     }
 }

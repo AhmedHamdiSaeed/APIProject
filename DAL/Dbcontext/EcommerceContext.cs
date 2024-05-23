@@ -8,10 +8,11 @@ namespace DAL.Dbcontext
     public class EcommerceContext : IdentityDbContext<CustomUser>
     {
         public DbSet<Product> Products => Set<Product>();
-        public DbSet<Cart>Carts => Set<Cart>();
+        public DbSet<Cart> Carts => Set<Cart>();
+        public DbSet<CartProduct>CartItems => Set<CartProduct>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Order>Orders => Set<Order>();
-
+        public DbSet<Image>Images=> Set<Image>();
         public EcommerceContext() { }
         public EcommerceContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
@@ -33,12 +34,10 @@ namespace DAL.Dbcontext
 
 
             //};
-
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EcommerceContext).Assembly);
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ProductColor>(entity=>entity.HasKey(o =>new{ o.ProductId, o.Color }));
-            modelBuilder.Entity<ProductImages>(entity => entity.HasKey(o => new { o.ProductId, o.ImageUrl }));
             //modelBuilder.Entity<Product>().HasData(products);
         }
     }
